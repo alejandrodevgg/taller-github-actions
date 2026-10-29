@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>trackme · docs</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0; font: 16px/1.6 system-ui, sans-serif;
+      background: #f8fafc; color: #0f172a;
+    }
+    header { background: #0f172a; color: #e2e8f0; padding: 2.5rem 1.5rem; }
+    header .wrap, main { max-width: 46rem; margin: 0 auto; }
+    h1 { margin: 0; font-size: 1.75rem; }
+    .tag { opacity: .7; }
+    main { padding: 2rem 1.5rem 4rem; }
+    h2 { font-size: 1.15rem; margin-top: 2.25rem; border-bottom: 1px solid #e2e8f0; padding-bottom: .35rem; }
+    code { background: #e2e8f0; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { text-align: left; padding: .4rem .6rem; border-bottom: 1px solid #e2e8f0; }
+    footer { opacity: .6; font-size: .8rem; margin-top: 3rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>trackme · docs</h1>
+      <p class="tag">Una API diminuta para aprender GitHub Actions de punta a punta.</p>
+    </div>
+  </header>
+  <main>
+    <h2>Qué es trackme</h2>
+    <p>
+      trackme es una app Node/Express de juguete: lo bastante pequeña para
+      leérla entera en cinco minutos y lo bastante real para montar sobre ella
+      un pipeline completo de CI/CD (lint, tests, matriz, imagen Docker,
+      Pages, releases y seguridad).
+    </p>
+
+    <h2>Endpoints</h2>
+    <table>
+      <tr><th>Ruta</th><th>Devuelve</th></tr>
+      <tr><td><code>GET /health</code></td><td><code>{ "status": "ok" }</code></td></tr>
+      <tr><td><code>GET /api/sum?a=2&amp;b=2</code></td><td><code>{ "result": 4 }</code></td></tr>
+      <tr><td><code>/</code></td><td>Un dashboard mínimo que consume <code>/api/sum</code></td></tr>
+    </table>
+
+    <h2>Arranque en local</h2>
+    <p>
+      <code>npm ci</code> → <code>npm run dev</code> → <code>http://localhost:8080</code>.
+      Opción contenedor: <code>docker build -t trackme .</code> y
+      <code>docker run --rm -p 8080:8080 trackme</code>.
+    </p>
+
+    <h2>Cómo se despliega</h2>
+    <p>
+      Esta página vive en <code>docs/</code> y la publica GitHub Actions desde
+      la rama <code>main</code> (sección 5 del taller: job <code>web</code> con
+      <code>upload-pages-artifact</code> + <code>deploy-pages</code>). La API,
+      además, se empaqueta como imagen en <code>ghcr.io</code> desde el mismo
+      workflow.
+    </p>
+
+    <footer>Página estática sin build: la publica tal cual GitHub Pages.</footer>
+  </main>
+</body>
+</html>
