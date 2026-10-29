@@ -22,7 +22,7 @@ jobs:
   lint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: npm login (only when the caller passed NPM_TOKEN)
         if: env.NPM_TOKEN != ''
         env:

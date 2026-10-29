@@ -30,7 +30,7 @@ jobs:
         run: |
           ls -la
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       
       - name: usando un addon
         run: ls -la
