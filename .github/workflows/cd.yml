@@ -49,7 +49,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
-      - name: Deploy to Github pages
+      - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v4
     
