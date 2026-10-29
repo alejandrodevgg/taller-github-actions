@@ -1,0 +1,22 @@
+name: hola runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      mensaje:
+        description: 'Saludo'
+        type: string
+        default: 'hola desde el runner'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  saludo:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Echo the dispatch inputs
+        env:
+          MENSAJE: ${{ inputs.mensaje }}
+        run: echo "mensaje: $MENSAJE"
