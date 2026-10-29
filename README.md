@@ -1,4 +1,4 @@
-![CI](https://github.com/alejandrodevgg/trackme/actions/workflows/ci.yml)
+![CI](https://github.com/alejandrodevgg/trackme/actions/workflows/ci.yml/badge.svg)
 
 # trackme
 
