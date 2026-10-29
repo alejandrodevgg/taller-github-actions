@@ -1,0 +1,43 @@
+name: Automation del repo
+
+on:
+  schedule:
+    - cron: "30 6 * * 1-5"    # 06:30 Mon-Fri, UTC
+  workflow_dispatch:
+  push:
+    paths: [".github/workflows/03-automation.yml", ".github/workflows/automation.yml"]
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+
+env:
+  STATS_PATH: stats.json
+
+jobs:
+  stats:
+    if: github.event_name != 'issues'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Generar stats.json
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/stats.js
+      - name: Subir stats.json
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: committer
+          author_name: trackme-bot
+          author_email: trackme-bot@users.noreply.github.com
+          message: "chore(stats): actualización automática"
+          add: "stats.json"
