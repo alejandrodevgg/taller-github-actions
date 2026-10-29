@@ -16,28 +16,14 @@ defaults:
     shell: bash
 
 jobs:
-  lint:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run lint
-  test:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-            node-version: 22
-            cache: npm
-      - run: npm ci
-      - run: npm test
+  ci-trackme:
+    uses: ./.github/workflows/ci-reusable.yml
+    with:
+      node: 22
+      app-path: "."
+    secrets: inherit
   informe:
-    needs: [lint,test]
+    needs: ci-trackme
     runs-on: ubuntu-22.04
     steps:
       - name: Build summary
