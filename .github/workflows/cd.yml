@@ -35,3 +35,21 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha, mode=max
       
+  web:
+    runs-on: ubuntu-22.04
+    environment:
+      name: github-pages
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-page-artifact@v3
+        with:
+          path: docs
+      - name: Deploy to Github pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+    
