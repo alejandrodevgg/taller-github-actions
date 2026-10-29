@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       mensaje:
-        description: 'Saludo'
+        description: "Saludo"
         type: string
-        default: 'hola desde el runner'
+        default: "hola desde el runner"
         required: true
 
 permissions:
@@ -19,4 +19,5 @@ jobs:
       - name: Echo the dispatch inputs
         env:
           MENSAJE: ${{ inputs.mensaje }}
-        run: echo "mensaje: $MENSAJE"
+        run: |
+          echo "mensaje: $MENSAJE"
