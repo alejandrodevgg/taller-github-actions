@@ -26,3 +26,11 @@ jobs:
           echo "actor: ${{github.actor}}"
           echo "repo: ${{github.repository}}"
           echo "evento: ${{github.event_name}}"
+      - name: Que hay en la maquina
+        run: |
+          ls -la
+
+      - uses: actions/checkout@v4
+      
+      - name: usando un addon
+        run: ls -la
