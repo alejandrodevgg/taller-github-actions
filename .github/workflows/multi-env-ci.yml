@@ -1,0 +1,33 @@
+name: CI trackme
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: [docs/**]
+  pull_request:
+    branches: [main]
+    paths-ignore: [docs/**]
+
+permissions:
+ contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        node: [18,20,22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+            node-version: ${{matrix.node}}
+            cache: npm
+      - run: npm ci
+      - run: npm test
