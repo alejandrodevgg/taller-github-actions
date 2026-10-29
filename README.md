@@ -1,3 +1,5 @@
+![CI](https://github.com/alejandrodevgg/trackme/actions/workflows/ci.yml)
+
 # trackme
 
 Una API diminuta de Node/Express para aprender **GitHub Actions** de punta a
