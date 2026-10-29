@@ -43,6 +43,6 @@ jobs:
       - name: Build summary
         run: |
           echo "Todo funcionando !!"
-          echo " evento ${{github.event_name}}, actor ${{github.actor}}
+          echo " evento ${{github.event_name}}, actor ${{github.actor}}"
     
     
