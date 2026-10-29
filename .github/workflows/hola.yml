@@ -21,3 +21,8 @@ jobs:
           MENSAJE: ${{ inputs.mensaje }}
         run: |
           echo "mensaje: $MENSAJE"
+      - name: Contexto Github
+        run: |
+          echo "actor: ${{github.actor}}"
+          echo "repo: ${{github.repository}}"
+          echo "evento: ${{github.event_name}}"
