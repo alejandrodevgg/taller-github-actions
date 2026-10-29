@@ -1,0 +1,44 @@
+name: CI reutilizable
+
+on:
+  workflow_call:
+    inputs:
+      node:
+        description: Version de node a testear
+        type: number
+        default: 22
+      app-path:
+        description: Ruta de la app
+        type: string
+        default: "."
+    secrets:
+      NPM_TOKEN:
+        required: false
+
+permissions: 
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: npm login (only when the caller passed NPM_TOKEN)
+        if: env.NPM_TOKEN != ''
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$HOME/.npmrc"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node}}
+          cache: npm
+          cache-dependency-path: ${{ inputs.app-path}}/package-lock.json
+      - name: Install deps
+        working-directory: ${{inputs.app-path}}
+        run: npm ci
+      - name: Lint
+        working-directory: ${{inputs.app-path}}
+        run: npm run lint
+      - name: Test
+        working-directory: ${{inputs.app-path}}
+        run: npm test
