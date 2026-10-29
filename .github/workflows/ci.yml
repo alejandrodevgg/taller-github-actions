@@ -1,0 +1,28 @@
+name: CI trackme
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: [docs/**]
+  pull_request:
+    branches: [main]
+    paths-ignore: [docs/**]
+
+permissions:
+ contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
