@@ -1,5 +1,4 @@
-![CI](https://github.com/alejandrodevgg/trackme/actions/workflows/ci.yml/badge.svg)
-
+[![CI trackme](https://github.com/alejandrodevgg/taller-github-actions/actions/workflows/multi-env-ci.yml/badge.svg)](https://github.com/alejandrodevgg/taller-github-actions/actions/workflows/multi-env-ci.yml)
 # trackme
 
 Una API diminuta de Node/Express para aprender **GitHub Actions** de punta a
