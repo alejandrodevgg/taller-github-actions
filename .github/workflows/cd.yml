@@ -46,7 +46,7 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/upload-page-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
       - name: Deploy to Github pages
